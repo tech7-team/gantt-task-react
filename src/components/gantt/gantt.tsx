@@ -24,6 +24,13 @@ import { HorizontalScroll } from "../other/horizontal-scroll";
 import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
 import styles from "./gantt.module.css";
 
+const dateTimeOptions: Intl.DateTimeFormatOptions = {
+  weekday: "short",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+
 export const Gantt: React.FunctionComponent<GanttProps> = ({
   tasks,
   headerHeight = 50,
@@ -34,6 +41,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   viewMode = ViewMode.Day,
   preStepsCount = 1,
   locale = "en-GB",
+  dtOptions = dateTimeOptions,
   barFill = 60,
   barCornerRadius = 3,
   barProgressColor = "#a3a3ff",
@@ -438,6 +446,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     fontSize,
     tasks: barTasks,
     locale,
+    dtOptions,
     headerHeight,
     scrollY,
     ganttHeight,

@@ -27,6 +27,7 @@ export const TaskListTableDefault: React.FC<{
   fontFamily: string;
   fontSize: string;
   locale: string;
+  dtOptions: Intl.DateTimeFormatOptions;
   tasks: Task[];
   selectedTaskId: string;
   setSelectedTask: (taskId: string) => void;
@@ -38,6 +39,7 @@ export const TaskListTableDefault: React.FC<{
   fontFamily,
   fontSize,
   locale,
+  dtOptions,
   onExpanderClick,
 }) => {
   const toLocaleDateString = useMemo(
@@ -96,7 +98,7 @@ export const TaskListTableDefault: React.FC<{
                 maxWidth: rowWidth,
               }}
             >
-              &nbsp;{toLocaleDateString(t.start, dateTimeOptions)}
+              &nbsp;{toLocaleDateString(t.start, dtOptions?dtOptions:dateTimeOptions)}
             </div>
             <div
               className={styles.taskListCell}
@@ -105,7 +107,7 @@ export const TaskListTableDefault: React.FC<{
                 maxWidth: rowWidth,
               }}
             >
-              &nbsp;{toLocaleDateString(t.end, dateTimeOptions)}
+              &nbsp;{toLocaleDateString(t.end, dtOptions?dtOptions:dateTimeOptions)}
             </div>
           </div>
         );

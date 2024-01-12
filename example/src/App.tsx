@@ -67,6 +67,12 @@ const App = () => {
     console.log("On expander click Id:" + task.id);
   };
 
+  const dateTimeOptions: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+
   return (
     <div className="Wrapper">
       <ViewSwitcher
@@ -78,6 +84,7 @@ const App = () => {
       <Gantt
         tasks={tasks}
         viewMode={view}
+        dtOptions={dateTimeOptions}
         onDateChange={handleTaskChange}
         onDelete={handleTaskDelete}
         onProgressChange={handleProgressChange}
@@ -92,6 +99,7 @@ const App = () => {
       <Gantt
         tasks={tasks}
         viewMode={view}
+        dtOptions={dateTimeOptions}
         onDateChange={handleTaskChange}
         onDelete={handleTaskDelete}
         onProgressChange={handleProgressChange}
