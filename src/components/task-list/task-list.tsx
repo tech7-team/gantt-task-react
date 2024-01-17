@@ -5,6 +5,7 @@ import { Task } from "../../types/public-types";
 export type TaskListProps = {
   headerHeight: number;
   rowWidth: string;
+  rowDateWidth:string;
   fontFamily: string;
   fontSize: string;
   rowHeight: number;
@@ -23,10 +24,12 @@ export type TaskListProps = {
     rowWidth: string;
     fontFamily: string;
     fontSize: string;
+    rowDateWidth:string;
   }>;
   TaskListTable: React.FC<{
     rowHeight: number;
     rowWidth: string;
+    rowDateWidth:string;
     fontFamily: string;
     fontSize: string;
     locale: string;
@@ -43,6 +46,7 @@ export const TaskList: React.FC<TaskListProps> = ({
   fontFamily,
   fontSize,
   rowWidth,
+  rowDateWidth,
   rowHeight,
   scrollY,
   tasks,
@@ -69,11 +73,13 @@ export const TaskList: React.FC<TaskListProps> = ({
     fontFamily,
     fontSize,
     rowWidth,
+    rowDateWidth,
   };
   const selectedTaskId = selectedTask ? selectedTask.id : "";
   const tableProps = {
     rowHeight,
     rowWidth,
+    rowDateWidth,
     fontFamily,
     fontSize,
     tasks,

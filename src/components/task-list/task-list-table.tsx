@@ -24,6 +24,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 export const TaskListTableDefault: React.FC<{
   rowHeight: number;
   rowWidth: string;
+  rowDateWidth:string;
   fontFamily: string;
   fontSize: string;
   locale: string;
@@ -35,6 +36,7 @@ export const TaskListTableDefault: React.FC<{
 }> = ({
   rowHeight,
   rowWidth,
+  rowDateWidth,
   tasks,
   fontFamily,
   fontSize,
@@ -94,8 +96,8 @@ export const TaskListTableDefault: React.FC<{
             <div
               className={styles.taskListCell}
               style={{
-                minWidth: rowWidth,
-                maxWidth: rowWidth,
+                minWidth: rowDateWidth,
+                maxWidth: rowDateWidth,
               }}
             >
               &nbsp;{toLocaleDateString(t.start, dtOptions?dtOptions:dateTimeOptions)}
@@ -103,8 +105,8 @@ export const TaskListTableDefault: React.FC<{
             <div
               className={styles.taskListCell}
               style={{
-                minWidth: rowWidth,
-                maxWidth: rowWidth,
+                minWidth: rowDateWidth,
+                maxWidth: rowDateWidth,
               }}
             >
               &nbsp;{toLocaleDateString(t.end, dtOptions?dtOptions:dateTimeOptions)}

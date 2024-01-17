@@ -5,7 +5,7 @@ import { Bar } from "./bar/bar";
 import { BarSmall } from "./bar/bar-small";
 import { Milestone } from "./milestone/milestone";
 import { Project } from "./project/project";
-import style from "./task-list.module.css";
+// import style from "./task-list.module.css";
 
 export type TaskItemProps = {
   task: BarTask;
@@ -26,18 +26,18 @@ export type TaskItemProps = {
 export const TaskItem: React.FC<TaskItemProps> = props => {
   const {
     task,
-    arrowIndent,
+    // arrowIndent,
     isDelete,
-    taskHeight,
+    // taskHeight,
     isSelected,
-    rtl,
+    // rtl,
     onEventStart,
   } = {
     ...props,
   };
   const textRef = useRef<SVGTextElement>(null);
   const [taskItem, setTaskItem] = useState<JSX.Element>(<div />);
-  const [isTextInside, setIsTextInside] = useState(true);
+  // const [isTextInside, setIsTextInside] = useState(true);
 
   useEffect(() => {
     switch (task.typeInternal) {
@@ -57,28 +57,28 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   }, [task, isSelected]);
 
   useEffect(() => {
-    if (textRef.current) {
-      setIsTextInside(textRef.current.getBBox().width < task.x2 - task.x1);
-    }
+    // if (textRef.current) {
+    //   setIsTextInside(textRef.current.getBBox().width < task.x2 - task.x1);
+    // }
   }, [textRef, task]);
 
-  const getX = () => {
-    const width = task.x2 - task.x1;
-    const hasChild = task.barChildren.length > 0;
-    if (isTextInside) {
-      return task.x1 + width * 0.5;
-    }
-    if (rtl && textRef.current) {
-      return (
-        task.x1 -
-        textRef.current.getBBox().width -
-        arrowIndent * +hasChild -
-        arrowIndent * 0.2
-      );
-    } else {
-      return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
-    }
-  };
+  // const getX = () => {
+  //   const width = task.x2 - task.x1;
+  //   const hasChild = task.barChildren.length > 0;
+  //   if (isTextInside) {
+  //     return task.x1 + width * 0.5;
+  //   }
+  //   if (rtl && textRef.current) {
+  //     return (
+  //       task.x1 -
+  //       textRef.current.getBBox().width -
+  //       arrowIndent * +hasChild -
+  //       arrowIndent * 0.2
+  //     );
+  //   } else {
+  //     return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
+  //   }
+  // };
 
   return (
     <g
@@ -108,7 +108,7 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
       }}
     >
       {taskItem}
-      <text
+      {/* <text
         x={getX()}
         y={task.y + taskHeight * 0.5}
         className={
@@ -119,7 +119,7 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
         ref={textRef}
       >
         {task.name}
-      </text>
+      </text> */}
     </g>
   );
 };

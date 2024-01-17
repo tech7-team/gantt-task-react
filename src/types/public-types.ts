@@ -89,6 +89,7 @@ export interface DisplayOption {
 export interface StylingOption {
   headerHeight?: number;
   columnWidth?: number;
+  rowDateWidth?:string;
   listCellWidth?: string;
   rowHeight?: number;
   ganttHeight?: number;

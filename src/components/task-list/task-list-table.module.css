@@ -16,9 +16,8 @@
 .taskListCell {
   display: table-cell;
   vertical-align: middle;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: wrap;
 }
 .taskListNameWrapper {
   display: flex;
