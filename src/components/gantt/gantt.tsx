@@ -37,7 +37,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   headerHeight = 50,
   columnWidth = 60,
   listCellWidth = "155px",
-  rowDateWidth ='90px',
+  rowDateWidth = "90px",
   rowHeight = 50,
   ganttHeight = 0,
   viewMode = ViewMode.Day,
@@ -100,7 +100,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
 
   const [selectedTask, setSelectedTask] = useState<BarTask>();
   const [failedTask, setFailedTask] = useState<BarTask | null>(null);
-  const [milestoneTasks, setMilestoneTasks] = useState<any>([]);
 
   const svgWidth = dateSetup.dates.length * columnWidth;
   const ganttFullHeight = barTasks.length * rowHeight;
@@ -311,12 +310,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     ganttFullHeight,
   ]);
 
-  useEffect(()=>{
-    const filteredTask = tasks.filter(task=>task.type==='milestone');
-    setMilestoneTasks(filteredTask);
-    console.log('gantt :',tasks);
-  },[tasks])
-
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
     if (scrollY !== event.currentTarget.scrollTop && !ignoreScrollEvent) {
       setScrollY(event.currentTarget.scrollTop);
@@ -425,7 +418,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   };
   const barProps: TaskGanttContentProps = {
     tasks: barTasks,
-    isTextDisplaying:isTextDisplaying,
+    isTextDisplaying: isTextDisplaying,
     dates: dateSetup.dates,
     ganttEvent,
     selectedTask,

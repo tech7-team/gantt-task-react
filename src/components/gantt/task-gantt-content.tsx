@@ -13,7 +13,7 @@ import {
 
 export type TaskGanttContentProps = {
   tasks: BarTask[];
-  isTextDisplaying:boolean;
+  isTextDisplaying: boolean;
   dates: Date[];
   ganttEvent: GanttEvent;
   selectedTask: BarTask | undefined;
