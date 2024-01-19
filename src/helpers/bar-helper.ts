@@ -112,7 +112,9 @@ const convertToBarTask = (
         projectProgressColor,
         projectProgressSelectedColor,
         projectBackgroundColor,
-        projectBackgroundSelectedColor
+        projectBackgroundSelectedColor,
+        milestoneBackgroundColor,
+        milestoneBackgroundSelectedColor
       );
       break;
     default:
@@ -149,7 +151,9 @@ const convertToBar = (
   barProgressColor: string,
   barProgressSelectedColor: string,
   barBackgroundColor: string,
-  barBackgroundSelectedColor: string
+  barBackgroundSelectedColor: string,
+  milestoneBackgroundColor?: string,
+  milestoneBackgroundSelectedColor?: string
 ): BarTask => {
   let x1: number;
   let x2: number;
@@ -175,6 +179,25 @@ const convertToBar = (
   const y = taskYCoordinate(index, rowHeight, taskHeight);
   const hideChildren = task.type === "project" ? task.hideChildren : undefined;
 
+  let milestoneTasks = []
+  if (task.milestones && milestoneBackgroundColor && milestoneBackgroundSelectedColor) {
+    for (let i=0;i<task.milestones.length;i++) {
+      const milestone = task.milestones[i];
+      milestoneTasks.push(convertToMilestone(
+        milestone,
+        index,
+        dates,
+        columnWidth,
+        rowHeight,
+        taskHeight,
+        barCornerRadius,
+        handleWidth,
+        milestoneBackgroundColor,
+        milestoneBackgroundSelectedColor
+      ));
+    }
+  }
+
   const styles = {
     backgroundColor: barBackgroundColor,
     backgroundSelectedColor: barBackgroundSelectedColor,
@@ -197,6 +220,7 @@ const convertToBar = (
     height: taskHeight,
     barChildren: [],
     styles,
+    milestoneTasks
   };
 };
 

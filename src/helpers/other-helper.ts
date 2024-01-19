@@ -31,6 +31,23 @@ export function removeHiddenTasks(tasks: Task[]) {
   return tasks;
 }
 
+export function milestoneOnProject(tasks: Task[], alwaysShowMilestone: boolean) {
+  let processedTasks: Task[] = [];
+  if (alwaysShowMilestone) {
+    for (let i = 0; i < tasks.length; i++) {
+      const task = tasks[i];
+      if (task.type === "project") {
+        const children = getChildren(tasks, task);
+        task.milestones = children.filter(t => t.type === "milestone");
+      }
+      processedTasks.push(task);
+    }
+  } else {
+    processedTasks = tasks;
+  }
+  return processedTasks;
+}
+
 function getChildren(taskList: Task[], task: Task) {
   let tasks: Task[] = [];
   if (task.type !== "project") {

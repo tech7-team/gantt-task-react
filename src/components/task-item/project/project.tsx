@@ -1,6 +1,7 @@
 import React from "react";
 import { TaskItemProps } from "../task-item";
 import styles from "./project.module.css";
+import styles2 from "../milestone/milestone.module.css";
 
 export const Project: React.FC<TaskItemProps> = ({
   task,
@@ -30,6 +31,34 @@ export const Project: React.FC<TaskItemProps> = ({
     task.x2 - 15,
     task.y + task.height / 2 - 1,
   ].join(",");
+
+  let milestoneBars = [];
+  if (task.milestoneTasks) {
+    for (let i=0; i<task.milestoneTasks.length; i++) {
+      const milestoneTask = task.milestoneTasks[i];
+      const transform = `rotate(45 ${milestoneTask.x1 + milestoneTask.height * 0.356} 
+        ${milestoneTask.y + milestoneTask.height * 0.85})`;
+      const getBarColor = () => {
+          return isSelected
+            ? milestoneTask.styles.backgroundSelectedColor
+            : milestoneTask.styles.backgroundColor;
+        };
+      milestoneBars.push(
+        <rect
+            key={task.id+"-"+milestoneTask.id}
+            fill={getBarColor()}
+            x={milestoneTask.x1}
+            width={milestoneTask.height}
+            y={milestoneTask.y}
+            height={milestoneTask.height}
+            rx={milestoneTask.barCornerRadius}
+            ry={milestoneTask.barCornerRadius}
+            transform={transform}
+            className={styles2.milestoneBackground}
+          />
+      )
+    }
+  }
 
   return (
       <g tabIndex={0} className={styles.projectWrapper}>
@@ -72,6 +101,7 @@ export const Project: React.FC<TaskItemProps> = ({
           points={projectRightTriangle}
           fill={barColor}
         />
+        {milestoneBars}
       </g>
   );
 };

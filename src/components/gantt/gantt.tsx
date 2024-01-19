@@ -21,7 +21,7 @@ import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
 import { HorizontalScroll } from "../other/horizontal-scroll";
-import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
+import { milestoneOnProject, removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
 import styles from "./gantt.module.css";
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
@@ -42,6 +42,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   ganttHeight = 0,
   viewMode = ViewMode.Day,
   preStepsCount = 1,
+  alwaysShowMilestone = false,
   locale = "en-GB",
   dtOptions = dateTimeOptions,
   barFill = 60,
@@ -111,11 +112,10 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   // task change events
   useEffect(() => {
     let filteredTasks: Task[];
+    filteredTasks = milestoneOnProject(tasks, alwaysShowMilestone);
     if (onExpanderClick) {
-      filteredTasks = removeHiddenTasks(tasks);
-    } else {
-      filteredTasks = tasks;
-    }
+      filteredTasks = removeHiddenTasks(filteredTasks);
+    } 
     filteredTasks = filteredTasks.sort(sortTasks);
     const [startDate, endDate] = ganttDateRange(
       filteredTasks,

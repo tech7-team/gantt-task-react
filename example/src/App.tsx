@@ -92,6 +92,7 @@ const App = () => {
         onClick={handleClick}
         onSelect={handleSelect}
         onExpanderClick={handleExpanderClick}
+        milestoneBackgroundColor="42f548"
         listCellWidth={isChecked ? "155px" : ""}
         columnWidth={columnWidth}
       />
@@ -107,6 +108,7 @@ const App = () => {
         onClick={handleClick}
         onSelect={handleSelect}
         onExpanderClick={handleExpanderClick}
+        milestoneBackgroundColor="42f548"
         listCellWidth={isChecked ? "155px" : ""}
         ganttHeight={300}
         columnWidth={columnWidth}
