@@ -33,6 +33,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 
 export const Gantt: React.FunctionComponent<GanttProps> = ({
   tasks,
+  isTextDisplaying = false,
   headerHeight = 50,
   columnWidth = 60,
   listCellWidth = "155px",
@@ -309,6 +310,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     ganttFullHeight,
   ]);
 
+
   const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
     if (scrollY !== event.currentTarget.scrollTop && !ignoreScrollEvent) {
       setScrollY(event.currentTarget.scrollTop);
@@ -417,6 +419,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   };
   const barProps: TaskGanttContentProps = {
     tasks: barTasks,
+    isTextDisplaying:isTextDisplaying,
     dates: dateSetup.dates,
     ganttEvent,
     selectedTask,

@@ -13,6 +13,7 @@ import {
 
 export type TaskGanttContentProps = {
   tasks: BarTask[];
+  isTextDisplaying:boolean;
   dates: Date[];
   ganttEvent: GanttEvent;
   selectedTask: BarTask | undefined;
@@ -34,6 +35,7 @@ export type TaskGanttContentProps = {
 
 export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   tasks,
+  isTextDisplaying,
   dates,
   ganttEvent,
   selectedTask,
@@ -283,6 +285,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
         {tasks.map(task => {
           return (
             <TaskItem
+              isTextDisplaying={isTextDisplaying}
               task={task}
               arrowIndent={arrowIndent}
               taskHeight={taskHeight}
