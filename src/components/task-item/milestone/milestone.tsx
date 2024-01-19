@@ -16,32 +16,7 @@ export const Milestone: React.FC<TaskItemProps> = ({
       : task.styles.backgroundColor;
   };
 
-  const translateStyle = {
-    transform: `translateY(-${task.index*50}px)`,
-  };
-
-  const translateStyleX = {
-    transform: `translateX(-10px) `,
-  };
-
   return (
-    <g style={translateStyleX}>
-      <g tabIndex={0} style={translateStyle} className={styles.milestoneWrapper}>
-        <rect
-          fill={getBarColor()}
-          x={task.x1}
-          width={task.height}
-          y={task.y}
-          height={task.height}
-          rx={task.barCornerRadius}
-          ry={task.barCornerRadius}
-          transform={transform}
-          className={styles.milestoneBackground}
-          onMouseDown={e => {
-            isDateChangeable && onEventStart("move", task, e);
-          }}
-        />
-      </g>
       <g tabIndex={0} className={styles.milestoneWrapper}>
         <rect
           fill={getBarColor()}
@@ -58,7 +33,5 @@ export const Milestone: React.FC<TaskItemProps> = ({
           }}
         />
       </g>
-    </g>
-
   );
 };
