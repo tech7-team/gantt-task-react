@@ -45,7 +45,7 @@ export const Project: React.FC<TaskItemProps> = ({
         };
       milestoneBars.push(
         <rect
-            key={task.id+"-"+milestoneTask.id}
+            key={task.id+"-"+milestoneTask.id+"-"+i}
             fill={getBarColor()}
             x={milestoneTask.x1}
             width={milestoneTask.height}
