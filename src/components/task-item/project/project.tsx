@@ -39,9 +39,7 @@ export const Project: React.FC<TaskItemProps> = ({
       const transform = `rotate(45 ${milestoneTask.x1 + milestoneTask.height * 0.356} 
         ${milestoneTask.y + milestoneTask.height * 0.85})`;
       const getBarColor = () => {
-          return isSelected
-            ? milestoneTask.styles.backgroundSelectedColor
-            : milestoneTask.styles.backgroundColor;
+          return milestoneTask.styles.backgroundColor;
         };
       milestoneBars.push(
         <rect
